@@ -1,6 +1,6 @@
 package ru.task1.products.model;
 
-public class Pacifier extends ChildrensGoods{
+public class Pacifier extends ChildrenGoods {
     public Pacifier(String name, double price, double quantity, String unit, int minimumAge, boolean hypoallergenic) {
         super(name, price, quantity, unit, minimumAge, hypoallergenic);
     }
