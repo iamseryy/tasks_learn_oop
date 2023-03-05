@@ -9,7 +9,7 @@ public class Program
 {
     public static void main( String[] args ){
 
-        HashSet<Product> products = new HashSet<>();
+        var products = new HashSet<Product>();
         products.add(new Milk("House in the village", 90, 1, "liter", 1, 2.5,
                 new GregorianCalendar(2023, 3, 15)));
 

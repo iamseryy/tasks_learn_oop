@@ -1,6 +1,6 @@
 package ru.task1.products.model;
 
-public class Diaper extends ChildrensGoods{
+public class Diaper extends ChildrenGoods {
     private String size;
     private int minWeight;
     private int maxWeight;

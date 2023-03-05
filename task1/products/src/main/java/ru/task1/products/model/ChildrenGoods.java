@@ -1,10 +1,10 @@
 package ru.task1.products.model;
 
-public abstract class ChildrensGoods extends Product{
+public abstract class ChildrenGoods extends Product{
     private int minimumAge;
     private boolean hypoallergenic;
 
-    public ChildrensGoods(String name, double price, double quantity, String unit, int minimumAge, boolean hypoallergenic) {
+    public ChildrenGoods(String name, double price, double quantity, String unit, int minimumAge, boolean hypoallergenic) {
         super(name, price, quantity, unit);
         this.minimumAge = minimumAge;
         this.hypoallergenic = hypoallergenic;
