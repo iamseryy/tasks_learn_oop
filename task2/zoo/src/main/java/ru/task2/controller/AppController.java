@@ -4,8 +4,9 @@ package ru.task2.controller;
 import ru.task2.service.ZooService;
 import ru.task2.service.impl.ZooServiceImpl;
 import ru.task2.view.inputcard.*;
-import ru.task2.view.menu.MenuItem;
 import ru.task2.view.menu.Menu;
+import ru.task2.view.menu.impl.MenuItem;
+import ru.task2.view.menu.impl.MenuImpl;
 import java.util.ArrayList;
 
 
@@ -13,8 +14,8 @@ public class AppController {
     private final static ZooService zooService = new ZooServiceImpl();
     private final static ArrayList<MenuItem> generalMenuItems= new ArrayList<>();
     private final static ArrayList<MenuItem> addAnimalMenuItems= new ArrayList<>();
-    private final static Menu generalMenu = new Menu("\nWelcome to the zoo!\n", generalMenuItems);
-    private final static Menu addAnimalMenu = new Menu("\nAnimal to add\n", addAnimalMenuItems);
+    private final static Menu generalMenu = new MenuImpl("\nWelcome to the zoo!\n", generalMenuItems);
+    private final static Menu addAnimalMenu = new MenuImpl("\nAnimal to add\n", addAnimalMenuItems);
 
     static {
         generalMenuItems.add(new MenuItem("1 Print information about animals", () -> zooService.printAnimals()));
