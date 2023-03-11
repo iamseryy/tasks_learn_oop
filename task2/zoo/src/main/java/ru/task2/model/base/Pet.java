@@ -69,9 +69,9 @@ public abstract class Pet extends Animal{
                 ", isVaccinated=" + isVaccinated +
                 ", coatСolor='" + coatСolor + '\'' +
                 ", birthDate=" + birthDate.getTime() +
-                ", height=" + height +
-                ", weight=" + weight +
-                ", eyeColor='" + eyeColor + '\'' +
+                ", height=" + getHeight() +
+                ", weight=" + getWeight() +
+                ", eyeColor='" + getEyeColor() + '\'' +
                 '}';
     }
 }

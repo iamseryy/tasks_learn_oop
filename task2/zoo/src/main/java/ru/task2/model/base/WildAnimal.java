@@ -33,9 +33,9 @@ public abstract class WildAnimal extends Animal{
         return "WildAnimal{" +
                 "habitat='" + habitat + '\'' +
                 ", dateFound=" + dateFound.getTime() +
-                ", height=" + height +
-                ", weight=" + weight +
-                ", eyeColor='" + eyeColor + '\'' +
+                ", height=" + getHeight() +
+                ", weight=" + getWeight() +
+                ", eyeColor='" + getEyeColor() + '\'' +
                 '}';
     }
 }

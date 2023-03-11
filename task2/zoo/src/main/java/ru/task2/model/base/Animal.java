@@ -1,9 +1,9 @@
 package ru.task2.model.base;
 
 public abstract class Animal {
-    int height;
-    int weight;
-    String eyeColor;
+    private int height;
+    private int weight;
+    private String eyeColor;
 
     public Animal(int height, int weight, String eyeColor) {
         this.height = height;
