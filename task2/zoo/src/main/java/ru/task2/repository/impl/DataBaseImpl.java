@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class DataBaseImpl implements DataBase {
-    public static Zoo zoo = new Zoo(new HashMap<>());
+    private static Zoo zoo = new Zoo(new HashMap<>());
 
     private static DataBaseImpl instance;
 
