@@ -1,16 +1,17 @@
-package ru.task2.view.inputcard;
+package ru.task2.view.inputcard.impl;
 
-import ru.task2.model.Tiger;
+import ru.task2.model.Wolf;
 import ru.task2.model.base.Animal;
 import ru.task2.view.ViewUtils;
+import ru.task2.view.inputcard.EntityCard;
 
 import java.util.Calendar;
 import java.util.Optional;
 
-public class TigerInputCard implements Inputable {
+public class WolfInputCard implements EntityCard {
     @Override
     public Optional<Animal> get() {
-        System.out.println("\nThe tiger will be added\nComplete the following fields or enter an empty string to cancel");
+        System.out.println("\nThe wolf will be added\nComplete the following fields or enter an empty string to cancel");
 
         Optional<Integer> heightOpt = ViewUtils.inputInt("Height: ");
         if (heightOpt.isEmpty()){
@@ -40,8 +41,14 @@ public class TigerInputCard implements Inputable {
         }
         Calendar dateFound = dateFoundOpt.get();
 
-        Animal tiger = new Tiger(height, weight, eyeColor, habitat, dateFound);
+        Optional<Boolean> packLeaderOpt = ViewUtils.inputBool("Pack Leader (true or false): ");
+        if (packLeaderOpt.isEmpty()){
+            return Optional.empty();
+        }
+        boolean packLeader = packLeaderOpt.get();
 
-        return Optional.ofNullable(tiger);
+        Animal wolf = new Wolf(height, weight, eyeColor, habitat, dateFound, packLeader);
+
+        return Optional.ofNullable(wolf);
     }
 }

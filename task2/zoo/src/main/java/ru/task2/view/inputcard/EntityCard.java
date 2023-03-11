@@ -4,7 +4,7 @@ import ru.task2.model.base.Animal;
 import java.util.Optional;
 
 
-public interface Inputable {
+public interface EntityCard {
     Optional<Animal> get();
 
 }

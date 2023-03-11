@@ -1,13 +1,14 @@
-package ru.task2.view.inputcard;
+package ru.task2.view.inputcard.impl;
 
 import ru.task2.model.Cat;
 import ru.task2.model.base.Animal;
 import ru.task2.view.ViewUtils;
+import ru.task2.view.inputcard.EntityCard;
 
 import java.util.Calendar;
 import java.util.Optional;
 
-public class CatInputCard implements Inputable {
+public class CatInputCard implements EntityCard {
 
     @Override
     public Optional<Animal> get(){

@@ -3,7 +3,7 @@ package ru.task2.controller;
 
 import ru.task2.service.ZooService;
 import ru.task2.service.impl.ZooServiceImpl;
-import ru.task2.view.inputcard.*;
+import ru.task2.view.inputcard.impl.*;
 import ru.task2.view.menu.Menu;
 import ru.task2.view.menu.impl.MenuItem;
 import ru.task2.view.menu.impl.MenuImpl;

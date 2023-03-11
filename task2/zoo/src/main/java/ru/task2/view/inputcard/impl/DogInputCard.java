@@ -1,13 +1,14 @@
-package ru.task2.view.inputcard;
+package ru.task2.view.inputcard.impl;
 
 import ru.task2.model.Dog;
 import ru.task2.model.base.Animal;
 import ru.task2.view.ViewUtils;
+import ru.task2.view.inputcard.EntityCard;
 
 import java.util.Calendar;
 import java.util.Optional;
 
-public class DogInputCard implements Inputable {
+public class DogInputCard implements EntityCard {
     @Override
     public Optional<Animal> get() {
         System.out.println("\nThe dog will be added\nComplete the following fields or enter an empty string to cancel");
