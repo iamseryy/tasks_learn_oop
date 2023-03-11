@@ -6,7 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Dog extends Pet {
+public class Dog extends Pet implements Trainedable{
     private boolean trained;
 
     public Dog(String name, String breed, int height, int weight, String eyeColor, String coatСolor, Calendar birthDate,
@@ -15,12 +15,27 @@ public class Dog extends Pet {
         this.trained = trained;
     }
 
-    public boolean isTrained() {
+    public boolean isTrained()  {
         return trained;
     }
 
-    public void train(){
-        System.out.println("The dog " + getName() + " showed the execution of commands");
+//    public void train(){
+//        System.out.println("The dog " + getName() + " showed the execution of commands");
+//    }
+
+    @Override
+    public void Sit() {
+        System.out.println("The dog " + getName() + " sat down");
+    }
+
+    @Override
+    public void Lie() {
+        System.out.println("The dog " + getName() + " lay down");
+    }
+
+    @Override
+    public void SpinAround() {
+        System.out.println("The dog " + getName() + " was spinning");
     }
 
     @Override

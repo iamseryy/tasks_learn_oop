@@ -157,7 +157,11 @@ public class ZooService {
                 System.out.println("\nThere are no trained dogs in the zoo");
             }else {
                 dogs.forEach(dog -> {
-                    identifyAnimalAndExecute(dog, (dogExec) -> ((Dog) dogExec).train());
+                    identifyAnimalAndExecute(dog, (dogTrain) -> {
+                        ((Trainedable) dogTrain).Lie();
+                        ((Trainedable) dogTrain).Sit();
+                        ((Trainedable) dogTrain).SpinAround();
+                    });
                     System.out.println();
                 });
             }
