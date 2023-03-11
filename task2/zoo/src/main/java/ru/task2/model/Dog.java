@@ -1,12 +1,13 @@
 package ru.task2.model;
 
 import ru.task2.model.base.Pet;
+import ru.task2.model.base.Trainedable;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Dog extends Pet implements Trainedable{
+public class Dog extends Pet implements Trainedable {
     private boolean trained;
 
     public Dog(String name, String breed, int height, int weight, String eyeColor, String coatСolor, Calendar birthDate,

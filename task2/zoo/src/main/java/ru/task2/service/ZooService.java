@@ -4,6 +4,7 @@ import ru.task2.model.*;
 import ru.task2.model.base.Animal;
 import ru.task2.model.base.Bird;
 import ru.task2.model.base.Pet;
+import ru.task2.model.base.Trainedable;
 import ru.task2.repository.DataBase;
 import ru.task2.view.ViewUtils;
 

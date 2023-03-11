@@ -1,4 +1,4 @@
-package ru.task2.model;
+package ru.task2.model.base;
 
 public interface Trainedable {
     void Sit();
