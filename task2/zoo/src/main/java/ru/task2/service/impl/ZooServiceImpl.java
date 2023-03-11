@@ -6,6 +6,7 @@ import ru.task2.model.base.Bird;
 import ru.task2.model.base.Pet;
 import ru.task2.model.base.Trainedable;
 import ru.task2.repository.DataBase;
+import ru.task2.repository.impl.DataBaseImpl;
 import ru.task2.service.Execute;
 import ru.task2.service.ZooService;
 import ru.task2.view.ViewUtils;
@@ -14,7 +15,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ZooServiceImpl implements ZooService {
-    private static DataBase db = DataBase.getInstance();
+    private static DataBase db = DataBaseImpl.getInstance();
 
     @Override
     public void addAnimal(Optional<Animal> animal){
