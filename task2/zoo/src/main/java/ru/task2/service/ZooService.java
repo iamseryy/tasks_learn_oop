@@ -34,7 +34,8 @@ public class ZooService {
             System.out.println();
             animals.entrySet().stream().forEach(animal ->  {
                 System.out.println("ID: " + animal.getKey());
-                identifyAnimalAndExecute(animal.getValue(), (animalExecute) -> animalExecute.printAbout());});
+                identifyAnimalAndExecute(animal.getValue(), (animalExecute) -> animalExecute.printAbout());
+            });
         }
 
         ViewUtils.pressEnterToContinue();
