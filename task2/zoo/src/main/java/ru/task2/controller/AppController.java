@@ -2,6 +2,7 @@ package ru.task2.controller;
 
 
 import ru.task2.service.ZooService;
+import ru.task2.service.impl.ZooServiceImpl;
 import ru.task2.view.inputcard.*;
 import ru.task2.view.menu.MenuItem;
 import ru.task2.view.menu.Menu;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 
 
 public class AppController {
-    private final static ZooService zooService = new ZooService();
+    private final static ZooService zooService = new ZooServiceImpl();
     private final static ArrayList<MenuItem> generalMenuItems= new ArrayList<>();
     private final static ArrayList<MenuItem> addAnimalMenuItems= new ArrayList<>();
     private final static Menu generalMenu = new Menu("\nWelcome to the zoo!\n", generalMenuItems);
