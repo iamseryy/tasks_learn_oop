@@ -3,8 +3,8 @@ package ru.task2.model.base;
 import java.util.Calendar;
 
 public abstract class WildAnimal extends Animal{
-    String habitat;
-    Calendar dateFound;
+    private String habitat;
+    private Calendar dateFound;
 
     public WildAnimal(int height, int weight, String eyeColor, String habitat, Calendar dateFound) {
         super(height, weight, eyeColor);
