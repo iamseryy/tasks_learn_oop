@@ -3,11 +3,11 @@ package ru.task2.model.base;
 import java.util.Calendar;
 
 public abstract class Pet extends Animal{
-    String name;
-    String breed;
-    boolean isVaccinated;
-    String coatСolor;
-    Calendar birthDate;
+    private String name;
+    private String breed;
+    private boolean isVaccinated;
+    private String coatСolor;
+    private Calendar birthDate;
 
     public Pet(int height, int weight, String eyeColor, String name, String breed, boolean isVaccinated,
                String coatСolor, Calendar birthDate) {
