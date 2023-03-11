@@ -12,11 +12,27 @@ public abstract class WildAnimal extends Animal{
         this.dateFound = dateFound;
     }
 
+    public String getHabitat() {
+        return habitat;
+    }
+
+    public void setHabitat(String habitat) {
+        this.habitat = habitat;
+    }
+
+    public Calendar getDateFound() {
+        return dateFound;
+    }
+
+    public void setDateFound(Calendar dateFound) {
+        this.dateFound = dateFound;
+    }
+
     @Override
     public String toString() {
         return "WildAnimal{" +
                 "habitat='" + habitat + '\'' +
-                ", dateFound=" + dateFound +
+                ", dateFound=" + dateFound.getTime() +
                 ", height=" + height +
                 ", weight=" + weight +
                 ", eyeColor='" + eyeColor + '\'' +

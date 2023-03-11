@@ -11,7 +11,32 @@ public abstract class Animal {
         this.eyeColor = eyeColor;
     }
 
-    protected abstract void printAbout();
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public String getEyeColor() {
+        return eyeColor;
+    }
+
+    public void setEyeColor(String eyeColor) {
+        this.eyeColor = eyeColor;
+    }
+
+    public abstract void printAbout();
+    public abstract void makeSound();
 
     @Override
     public String toString() {

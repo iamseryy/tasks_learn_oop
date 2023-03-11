@@ -19,8 +19,47 @@ public abstract class Pet extends Animal{
         this.birthDate = birthDate;
     }
 
-    protected abstract void showAffection();
+    public abstract void showAffection();
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public boolean isVaccinated() {
+        return isVaccinated;
+    }
+
+    public void setVaccinated(boolean vaccinated) {
+        isVaccinated = vaccinated;
+    }
+
+    public String getCoatСolor() {
+        return coatСolor;
+    }
+
+    public void setCoatСolor(String coatСolor) {
+        this.coatСolor = coatСolor;
+    }
+
+    public Calendar getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Calendar birthDate) {
+        this.birthDate = birthDate;
+    }
 
     @Override
     public String toString() {

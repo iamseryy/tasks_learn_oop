@@ -1,33 +1,50 @@
 package ru.task2.model;
 
-import org.w3c.dom.ls.LSOutput;
 import ru.task2.model.base.Pet;
-import ru.task2.model.base.Voiceable;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Cat extends Pet implements Voiceable {
+public class Cat extends Pet{
     private boolean woolPresence;
 
-    public Cat(int height, int weight, String eyeColor, String name, String breed, boolean isVaccinated,
-               String coatСolor, Calendar birthDate, boolean woolPresence) {
+    public Cat(String name, String breed, int height, int weight, String eyeColor, String coatСolor, Calendar birthDate,
+               boolean woolPresence, boolean isVaccinated) {
         super(height, weight, eyeColor, name, breed, isVaccinated, coatСolor, birthDate);
         this.woolPresence = woolPresence;
     }
 
-    @Override
-    public void makeSound() {
-        System.out.println("meow");
+    public boolean isWoolPresence() {
+        return woolPresence;
     }
 
     @Override
-    protected void showAffection() {
+    public void makeSound() {
+        System.out.println("\nmeow");
+    }
+
+    @Override
+    public void showAffection() {
         System.out.println("purr-purr");
     }
 
     @Override
-    protected void printAbout() {
-        System.out.println(this.toString());
+    public void printAbout() {
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        String info = String.format("Animal: %s\n"+
+                "Name: %s\n" +
+                "Breed: %s\n" +
+                "Height: %d\n" +
+                "Weight: %d\n" +
+                "Eye Color: %s\n" +
+                "Coat Сolor: %s\n" +
+                "Birth Date: %s\n" +
+                "Wool Presence: %b\n" +
+                "Is Vaccinated: %b\n"
+                ,"Cat", getName(), getBreed(), getHeight(), getWeight(), getEyeColor(),
+        getCoatСolor(), df.format(getBirthDate().getTime()), woolPresence, isVaccinated());
+        System.out.println(info);
     }
 
     @Override
@@ -37,4 +54,6 @@ public class Cat extends Pet implements Voiceable {
                 "woolPresence=" + woolPresence +
                 '}';
     }
+
+
 }
