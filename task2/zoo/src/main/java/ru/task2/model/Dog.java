@@ -20,10 +20,6 @@ public class Dog extends Pet implements Trainedable {
         return trained;
     }
 
-//    public void train(){
-//        System.out.println("The dog " + getName() + " showed the execution of commands");
-//    }
-
     @Override
     public void Sit() {
         System.out.println("The dog " + getName() + " sat down");
