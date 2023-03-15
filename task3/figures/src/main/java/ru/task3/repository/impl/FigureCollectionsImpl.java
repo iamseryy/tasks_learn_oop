@@ -10,6 +10,8 @@ public class FigureCollectionsImpl implements FigureCollections {
     private static HashMap<Integer, Figure> figureCollection = new HashMap<>();
     private static FigureCollectionsImpl instance;
 
+    private FigureCollectionsImpl(){}
+
     public static FigureCollectionsImpl getInstance() {
         if (instance == null) {
             instance = new FigureCollectionsImpl();
