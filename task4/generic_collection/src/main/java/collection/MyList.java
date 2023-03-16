@@ -2,5 +2,6 @@ package collection;
 
 public interface MyList<T> {
     int add(T t);
-    void remove(int index);
+    T get(int index);
+    T remove(int index);
 }
