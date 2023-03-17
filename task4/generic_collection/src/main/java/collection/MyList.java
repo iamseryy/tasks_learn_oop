@@ -1,7 +1,31 @@
 package collection;
 
+import java.util.Comparator;
+import java.util.Optional;
+
 public interface MyList<T> {
-    int add(T t);
-    T get(int index);
-    T remove(int index);
+    boolean add(T object);
+    boolean add(int index, T object);
+    Optional<T> get(int index);
+    Optional<T> remove(int index);
+    boolean remove(T object);
+    int size();
+    Optional<T> min(Comparator<T> comparator);
+    Optional<T> max(Comparator<T> comparator);
+//    Optional<T> sum();
+//    Optional<T> product();
+    int indexOf(T object);
+    boolean contains(T object);
+    void sortBubble(Comparator<T> comparator);
+    void sortInsertion(Comparator<T> comparator);
+    void sortSelection(Comparator<T> comparator);
+    Optional<T> set(int index, T object);
+
+
+
+
+
+
+
+
 }
