@@ -6,7 +6,6 @@ import collection.ToNumberFunction;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
-import java.util.function.ToIntFunction;
 
 public class MyArrayList<T> implements MyList<T> {
     private static final int DEFAULT_CAPACITY = 10;

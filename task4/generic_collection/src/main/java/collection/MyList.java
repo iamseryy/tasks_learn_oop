@@ -2,8 +2,7 @@ package collection;
 
 import java.util.Comparator;
 import java.util.Optional;
-import java.util.function.ToIntFunction;
-import java.util.function.ToLongFunction;
+
 
 public interface MyList<T> {
     boolean add(T object);
