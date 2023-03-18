@@ -2,6 +2,8 @@ package collection;
 
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.function.ToIntFunction;
+import java.util.function.ToLongFunction;
 
 public interface MyList<T> {
     boolean add(T object);
@@ -12,8 +14,8 @@ public interface MyList<T> {
     int size();
     Optional<T> min(Comparator<T> comparator);
     Optional<T> max(Comparator<T> comparator);
-//    Optional<T> sum();
-//    Optional<T> product();
+    Optional<T> sum(ToNumberFunction<? super T> mapper);
+    Optional<T> product(ToNumberFunction<? super T> mapper);
     int indexOf(T object);
     boolean contains(T object);
     void sortBubble(Comparator<T> comparator);

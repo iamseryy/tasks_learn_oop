@@ -1,10 +1,12 @@
 package collection.impl;
 
 import collection.MyList;
+import collection.ToNumberFunction;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.function.ToIntFunction;
 
 public class MyArrayList<T> implements MyList<T> {
     private static final int DEFAULT_CAPACITY = 10;
@@ -36,8 +38,14 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
-    public boolean add(T t) {
-        add(t, elements, size);
+    public boolean add(T element) {
+        if(size == elements.length){
+            elements = grow(size + 1);
+        }
+        elements[size++] = element;
+        size = size;
+        elements = elements;
+
         return true;
     }
 
@@ -54,15 +62,6 @@ public class MyArrayList<T> implements MyList<T> {
         size++;
 
         return true;
-    }
-
-    private void add(T element, Object elements[], int size){
-        if(size == elements.length){
-            elements = grow(size + 1);
-        }
-        elements[size++] = element;
-        this.size = size;
-        this.elements = elements;
     }
 
     private Object[] grow(int minCapacity){
@@ -222,6 +221,92 @@ public class MyArrayList<T> implements MyList<T> {
             elements[index] = element;
             return Optional.ofNullable((T) oldElement);
         }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<T> sum(ToNumberFunction<? super T> mapper) {
+        if (size == 0) return Optional.empty();
+
+        if(mapper.applyAsNumber((T) elements[0]) instanceof Byte){
+            long sum = 0;
+            for (int i = 0; i < size; i++) sum += (Byte) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        else if(mapper.applyAsNumber((T) elements[0]) instanceof Short){
+            long sum = 0;
+            for (int i = 0; i < size; i++) sum += (Short) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        else if (mapper.applyAsNumber((T) elements[0]) instanceof Integer){
+            long sum = 0;
+            for (int i = 0; i < size; i++) sum += (Integer) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        else if (mapper.applyAsNumber((T) elements[0]) instanceof Long){
+            long sum = 0;
+            for (int i = 0; i < size; i++) sum += (Long) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        else if (mapper.applyAsNumber((T) elements[0]) instanceof Float){
+            double sum = 0;
+            for (int i = 0; i < size; i++) sum += (Float) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        else if (mapper.applyAsNumber((T) elements[0]) instanceof Double){
+            double sum = 0;
+            for (int i = 0; i < size; i++) sum += (Double) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<T> product(ToNumberFunction<? super T> mapper) {
+        if (size == 0) return Optional.empty();
+
+        if(mapper.applyAsNumber((T) elements[0]) instanceof Byte){
+            long sum = 1;
+            for (int i = 0; i < size; i++) sum *= (Byte) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        else if(mapper.applyAsNumber((T) elements[0]) instanceof Short){
+            long sum = 1;
+            for (int i = 0; i < size; i++) sum *= (Short) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        else if (mapper.applyAsNumber((T) elements[0]) instanceof Integer){
+            long sum = 1;
+            for (int i = 0; i < size; i++) sum *= (Integer) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        else if (mapper.applyAsNumber((T) elements[0]) instanceof Long){
+            long sum = 1;
+            for (int i = 0; i < size; i++) sum *= (Long) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        else if (mapper.applyAsNumber((T) elements[0]) instanceof Float){
+            double sum = 1;
+            for (int i = 0; i < size; i++) sum *= (Float) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
+        else if (mapper.applyAsNumber((T) elements[0]) instanceof Double){
+            double sum = 1;
+            for (int i = 0; i < size; i++) sum *= (Double) (mapper.applyAsNumber((T) elements[i]));
+            return (Optional<T>) Optional.ofNullable(sum);
+        }
+
         return Optional.empty();
     }
 
