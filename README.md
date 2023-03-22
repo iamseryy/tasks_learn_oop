@@ -5,3 +5,4 @@
 |2|**[Task2](https://github.com/iamseryy/tasks_learn_oop/tree/main/task2)**|Zoo|
 |3|**[Task3](https://github.com/iamseryy/tasks_learn_oop/tree/main/task3)**|Figures|
 |4|**[Task4](https://github.com/iamseryy/tasks_learn_oop/tree/main/task4)**|Generic Collection|
+|5|**[Task5](https://github.com/iamseryy/tasks_learn_oop/tree/main/task5)**|Company|
