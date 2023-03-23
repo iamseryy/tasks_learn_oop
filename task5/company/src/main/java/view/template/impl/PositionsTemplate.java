@@ -18,7 +18,7 @@ public class PositionsTemplate implements Template {
 
     @Override
     public void output() {
-        ui.output("\nPositions\n");
+        ui.output("\nPositions");
         Optional<HashSet<Position>> positions = positionService.findAllPosition();
         if(positions.isEmpty()){
             ui.output("\nThe company has no positions");

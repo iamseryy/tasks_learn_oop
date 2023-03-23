@@ -1,5 +1,6 @@
 package view.template.impl;
 
+import model.HirePerson;
 import model.Person;
 import model.Status;
 import service.HirePersonService;
@@ -11,12 +12,13 @@ import service.impl.PositionServiceImpl;
 import view.template.Template;
 import view.ui.UserInterface;
 import view.ui.impl.UserInterfaceImpl;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Optional;
 
-public class PrintPersonTemplate implements Template {
+public class FireTemplate implements Template {
     private static PersonService personService = new PersonServiceImpl();
     private static PositionService positionService = new PositionServiceImpl();
     private static HirePersonService hirePersons = new HirePersonServiceImpl();
@@ -24,37 +26,48 @@ public class PrintPersonTemplate implements Template {
 
     @Override
     public void output() {
-        ui.output("\nCompany employee\n");
-        Optional<Integer> idOpt = ui.input("Enter ID or enter an empty string to cancel: ", Integer::parseInt);
-
+        ui.output("\nFire an employee");
+        Optional<Integer> idOpt = ui.input("Enter employee ID or enter an empty string to cancel: ", Integer::parseInt);
         if(!idOpt.isEmpty()){
             Optional<Person> personOptional = personService.findPersonById(idOpt.get());
             if (!personOptional.isEmpty()){
                 Person person = personOptional.get();
-                DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-
-                ui.output("\nID: " + person.id());
                 ui.output("Name: " + person.name());
                 ui.output("Surname: " + person.surname());
                 ui.output("Patronymic: " + person.patronymic());
-                ui.output("Date of Birth: " + df.format(person.dateBirth().getTime()));
-                ui.output("Home address: " + person.homeAddress());
-                ui.output("Phone number: " + person.phoneNumber());
                 String status = hirePersons.findLastHireOperationByPersonId(person.id()).get().hireType().getDescription();
-                String position = positionService.findPositionById(hirePersons.findLastHireOperationByPersonId(person.id())
-                        .get().positionId()).get().position();
+                Optional<HirePerson> hirePersonOptional = hirePersons.findLastHireOperationByPersonId(person.id());
+                String position = positionService.findPositionById(hirePersonOptional.get().positionId()).get().position();
                 ui.output("Position: " + position);
                 ui.output("Status: " + status);
+                DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
                 Calendar calendar = hirePersons.findLastHireOperationByPersonId(person.id()).get().hireDate();
-                if(status.equals(Status.FIRED.getDescription())){
-                    ui.output("Fired date: " + df.format(calendar.getTime()));
-                }else {
+                if(status.equals(Status.HIRED.getDescription())){
                     ui.output("Hired date: " + df.format(calendar.getTime()));
+                    while (true){
+                        Optional<Integer> choice = ui.input("Fire an employee? (1 yes/ 2 No): ", Integer::parseInt);
+                        if(choice.isEmpty() || choice.get() != 1 || choice.get() != 2){
+                           ui.output("Invalid input data! Try Again");
+                        }
+                        if(choice.get() == 1){
+//                            hirePersonOptional.get().hireType() = Status.FIRED;
+
+                        }else {
+                            ui.output("\nCancelled\n");
+                        }
+
+                        break;
+                    }
+
+                }else {
+                   ui.output("Fired date: " + df.format(calendar.getTime()));
+                   ui.output("\nEmployee already fired");
                 }
+
             }else {
                 ui.output("\nEmployee not found\n");
             }
-        } else{
+        } else {
             ui.output("\nCancelled\n");
         }
 
