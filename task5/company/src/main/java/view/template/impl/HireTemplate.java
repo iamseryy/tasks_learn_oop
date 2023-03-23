@@ -1,9 +1,13 @@
 package view.template.impl;
 
+import model.HirePerson;
 import model.Person;
 import model.Position;
+import model.Status;
+import service.HirePersonService;
 import service.PersonService;
 import service.PositionService;
+import service.impl.HirePersonServiceImpl;
 import service.impl.PersonServiceImpl;
 import service.impl.PositionServiceImpl;
 import view.template.Template;
@@ -16,6 +20,8 @@ import java.util.*;
 public class HireTemplate implements Template {
     private static PersonService personService = new PersonServiceImpl();
     private static PositionService positionService = new PositionServiceImpl();
+    private static HirePersonService hirePersons = new HirePersonServiceImpl();
+
     private static UserInterface ui = new UserInterfaceImpl();
     @Override
     public void output() {
@@ -77,6 +83,8 @@ public class HireTemplate implements Template {
                     }));
         }
 
+        int positionId = 0;
+
         while (true){
             Optional<Integer> positionOpt = ui.input("Position ID of employee : ", Integer::parseInt);
             if(positionOpt.isEmpty()){
@@ -88,6 +96,8 @@ public class HireTemplate implements Template {
                 ui.output("Position not found, try again\n");
                 continue;
             }
+
+            positionId = positionOpt.get();
 
             break;
         }
@@ -103,6 +113,8 @@ public class HireTemplate implements Template {
                 homeAddressOpt.get(), phoneNumberOpt.get());
 
         personService.addPerson(newPerson);
+        hirePersons.addHireOperation(new HirePerson(newPerson.id(), positionId, Status.HIRED, Calendar.getInstance()));
+
 
         ui.output("\nEmployee hired\n");
         ui.pressEnterToContinue();
