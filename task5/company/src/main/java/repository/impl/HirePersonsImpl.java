@@ -2,13 +2,12 @@ package repository.impl;
 
 import config.AppConfig;
 import model.HirePerson;
-import model.Person;
-import model.Position;
 import model.Status;
 import repository.HirePersons;
 import utils.FileUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class HirePersonsImpl implements HirePersons {
     private static Optional<HashSet<HirePerson>> hirePeople = initCollection();
@@ -37,6 +36,12 @@ public class HirePersonsImpl implements HirePersons {
     @Override
     public void deleteById(int id) {
 
+    }
+
+    @Override
+    public Set<HirePerson> findByPersonId(int id) {
+        return hirePeople.get().stream()
+                .filter(hirePerson -> hirePerson.personId() == id).collect(Collectors.toSet());
     }
 
     @Override
