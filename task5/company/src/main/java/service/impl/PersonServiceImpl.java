@@ -13,7 +13,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public int addPerson(Person person) {
-        return 0;
+        return this.persons.add(person);
     }
 
     @Override

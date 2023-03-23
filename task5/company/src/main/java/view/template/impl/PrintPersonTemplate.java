@@ -1,19 +1,20 @@
 package view.template.impl;
 
 import model.Person;
+import service.HirePersonService;
 import service.PersonService;
+import service.impl.HirePersonServiceImpl;
 import service.impl.PersonServiceImpl;
 import view.template.Template;
 import view.ui.UserInterface;
 import view.ui.impl.UserInterfaceImpl;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.HashSet;
 import java.util.Optional;
 
 public class PrintPersonTemplate implements Template {
     private static PersonService personService = new PersonServiceImpl();
+    private static HirePersonService hirePersons = new HirePersonServiceImpl();
     private static UserInterface ui = new UserInterfaceImpl();
 
     @Override
@@ -34,6 +35,7 @@ public class PrintPersonTemplate implements Template {
                 ui.output("Date of Birth: " + df.format(person.dateBirth().getTime()));
                 ui.output("Home address: " + person.homeAddress());
                 ui.output("Phone number: " + person.phoneNumber());
+//                ui.output("Position: " + hirePersons.);
             }else {
                 ui.output("\nEmployee not found\n");
             }

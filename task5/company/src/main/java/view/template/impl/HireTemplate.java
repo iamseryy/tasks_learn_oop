@@ -41,14 +41,15 @@ public class HireTemplate implements Template {
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Optional<Calendar> birthDateOpt =  ui.input("Birth Date (dd-mm-yyyy): ", sdf::parse);
+        Optional<Date> birthDateOpt =  ui.input("Birth Date (dd-mm-yyyy): ", sdf::parse);
 
         if (birthDateOpt.isEmpty()){
             ui.output("\nCancelled\n");
             return;
         }
-        Date birthDate1 = birthDateOpt.get().;
 
+        Calendar birthDate = Calendar.getInstance();
+        birthDate.setTime(birthDateOpt.get());
 
         Optional<String> homeAddressOpt = ui.input("Home address: ", String::toString);
         if(surnameOpt.isEmpty()){
@@ -98,10 +99,10 @@ public class HireTemplate implements Template {
             id = people.stream().max((person1, person2) -> person1.id() - person2.id()).get().id();
         }
 
-//        var newPerson = new Person(id + 1, nameOpt.get(), surnameOpt.get(), patronymic, birthDate,
-//                homeAddressOpt.get(), phoneNumberOpt.get());
-//
-//        personService.addPerson(newPerson);
+        var newPerson = new Person(id + 1, nameOpt.get(), surnameOpt.get(), patronymic, birthDate,
+                homeAddressOpt.get(), phoneNumberOpt.get());
+
+        personService.addPerson(newPerson);
 
         ui.output("\nEmployee hired\n");
         ui.pressEnterToContinue();

@@ -21,11 +21,12 @@ public class FileUtils {
         return data;
     }
 
-    public static void writeFile(String data, File file) throws IOException{
-        FileWriter writer = new FileWriter(file, false);
-        writer.write(data);
-        writer.flush();
-
-        writer.close();
+    public static void writeFile(String data, File file, boolean append){
+        try (FileWriter writer = new FileWriter(file, append);){
+            writer.write(data);
+            writer.flush();
+        } catch (IOException e) {
+            AppConfig.LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
     }
 }

@@ -4,9 +4,6 @@ import config.AppConfig;
 import model.Person;
 import repository.Persons;
 import utils.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 public class PersonsImpl implements Persons {
@@ -25,7 +22,13 @@ public class PersonsImpl implements Persons {
 
     @Override
     public int add(Object entity) {
-        return 0;
+        this.persons.get().add((Person) entity);
+//        var stringBuilder = new StringBuilder();
+//        this.persons.get().stream()
+//                .sorted((person1, person2)-> (person1.id() - person2.id()))
+//                .forEach(person -> stringBuilder.append(person.toString()));
+        FileUtils.writeFile("\n" + ((Person) entity).toString(), AppConfig.getProperty("file.persons"), true);
+        return ((Person) entity).id();
     }
 
     @Override

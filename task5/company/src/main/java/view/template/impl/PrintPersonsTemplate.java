@@ -34,6 +34,7 @@ public class PrintPersonsTemplate implements Template {
                         ui.output("Date of Birth: " + df.format(person.dateBirth().getTime()));
                         ui.output("Home address: " + person.homeAddress());
                         ui.output("Phone number: " + person.phoneNumber());
+                        ui.output("");
                     }));
         }
 
