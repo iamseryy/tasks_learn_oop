@@ -42,12 +42,12 @@ public class PrintPersonsTemplate implements Template {
                         ui.output("Date of Birth: " + df.format(person.dateBirth().getTime()));
                         ui.output("Home address: " + person.homeAddress());
                         ui.output("Phone number: " + person.phoneNumber());
-                        String status = hirePersons.findLastHireOperationByPersonId(person.id()).get().hireType().getDescription();
+                        String status = hirePersons.findLastHireOperationByPersonId(person.id()).get().getHireType().getDescription();
                         String position = positionService.findPositionById(hirePersons.findLastHireOperationByPersonId(person.id())
-                                .get().positionId()).get().position();
+                                .get().getPositionId()).get().position();
                         ui.output("Position: " + position);
                         ui.output("Status: " + status);
-                        Calendar calendar = hirePersons.findLastHireOperationByPersonId(person.id()).get().hireDate();
+                        Calendar calendar = hirePersons.findLastHireOperationByPersonId(person.id()).get().getHireDate();
                         if(status.equals(Status.FIRED.getDescription())){
                             ui.output("Fired date: " + df.format(calendar.getTime()));
                         }else {

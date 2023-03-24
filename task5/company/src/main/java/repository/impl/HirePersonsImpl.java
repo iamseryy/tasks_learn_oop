@@ -24,8 +24,9 @@ public class HirePersonsImpl implements HirePersons {
     }
     @Override
     public int add(Object entity) {
+        hirePeople.get().add((HirePerson) entity);
         FileUtils.writeFile("\n" + ((HirePerson) entity).toString(), AppConfig.getProperty("file.hire_operations"), true);
-        return ((HirePerson) entity).personId();
+        return ((HirePerson) entity).getPersonId();
     }
 
     @Override
@@ -41,7 +42,7 @@ public class HirePersonsImpl implements HirePersons {
     @Override
     public Set<HirePerson> findByPersonId(int id) {
         return hirePeople.get().stream()
-                .filter(hirePerson -> hirePerson.personId() == id).collect(Collectors.toSet());
+                .filter(hirePerson -> hirePerson.getPersonId() == id).collect(Collectors.toSet());
     }
 
     @Override

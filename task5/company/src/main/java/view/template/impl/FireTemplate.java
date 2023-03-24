@@ -35,13 +35,13 @@ public class FireTemplate implements Template {
                 ui.output("Name: " + person.name());
                 ui.output("Surname: " + person.surname());
                 ui.output("Patronymic: " + person.patronymic());
-                String status = hirePersons.findLastHireOperationByPersonId(person.id()).get().hireType().getDescription();
+                String status = hirePersons.findLastHireOperationByPersonId(person.id()).get().getHireType().getDescription();
                 Optional<HirePerson> hirePersonOptional = hirePersons.findLastHireOperationByPersonId(person.id());
-                String position = positionService.findPositionById(hirePersonOptional.get().positionId()).get().position();
+                String position = positionService.findPositionById(hirePersonOptional.get().getPositionId()).get().position();
                 ui.output("Position: " + position);
                 ui.output("Status: " + status);
                 DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-                Calendar calendar = hirePersons.findLastHireOperationByPersonId(person.id()).get().hireDate();
+                Calendar calendar = hirePersons.findLastHireOperationByPersonId(person.id()).get().getHireDate();
                 if(status.equals(Status.HIRED.getDescription())){
                     ui.output("Hired date: " + df.format(calendar.getTime()));
                     while (true){
@@ -50,7 +50,7 @@ public class FireTemplate implements Template {
                            ui.output("Invalid input data! Try Again");
                         }
                         if(choice.get() == 1){
-//                            hirePersonOptional.get().hireType() = Status.FIRED;
+                            hirePersonOptional.get().setHireType(Status.FIRED);
 
                         }else {
                             ui.output("\nCancelled\n");

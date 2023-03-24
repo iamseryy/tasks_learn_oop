@@ -18,6 +18,6 @@ public class HirePersonServiceImpl implements HirePersonService {
     @Override
     public Optional<HirePerson> findLastHireOperationByPersonId(int id) {
         return hirePersons.findByPersonId(id).stream()
-                .max((hirePeople1, hirePerson2) -> hirePeople1.hireDate().compareTo(hirePerson2.hireDate()));
+                .max((hirePeople1, hirePerson2) -> hirePeople1.getHireDate().compareTo(hirePerson2.getHireDate()));
     }
 }
