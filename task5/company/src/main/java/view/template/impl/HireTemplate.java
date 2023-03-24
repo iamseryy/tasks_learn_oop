@@ -1,15 +1,14 @@
 package view.template.impl;
 
-import model.HirePerson;
-import model.Person;
-import model.Position;
-import model.Status;
+import model.*;
 import service.HirePersonService;
 import service.PersonService;
 import service.PositionService;
+import service.SalaryService;
 import service.impl.HirePersonServiceImpl;
 import service.impl.PersonServiceImpl;
 import service.impl.PositionServiceImpl;
+import service.impl.SalaryServiceImpl;
 import view.template.Template;
 import view.ui.UserInterface;
 import view.ui.impl.UserInterfaceImpl;
@@ -20,7 +19,8 @@ import java.util.*;
 public class HireTemplate implements Template {
     private static PersonService personService = new PersonServiceImpl();
     private static PositionService positionService = new PositionServiceImpl();
-    private static HirePersonService hirePersons = new HirePersonServiceImpl();
+    private static HirePersonService hirePersonService = new HirePersonServiceImpl();
+    private static SalaryService salaryService = new SalaryServiceImpl();
 
     private static UserInterface ui = new UserInterfaceImpl();
     @Override
@@ -102,6 +102,24 @@ public class HireTemplate implements Template {
             break;
         }
 
+        int salary = 0;
+        while (true){
+            Optional<Integer> salaryOpt = ui.input("Salary: ", Integer::parseInt);
+            if(salaryOpt.isEmpty()){
+                ui.output("\nCancelled\n");
+                return;
+            }
+
+            if(salaryOpt.get() <= 0){
+                ui.output("Invalid, try again\n");
+                continue;
+            }
+            salary = salaryOpt.get();
+            break;
+        }
+
+
+
         int id = 0;
         Optional<HashSet<Person>> personOpt = personService.findAllPersons();
         if(!personOpt.isEmpty()){
@@ -109,12 +127,14 @@ public class HireTemplate implements Template {
             id = people.stream().max((person1, person2) -> person1.id() - person2.id()).get().id();
         }
 
+
+
         var newPerson = new Person(id + 1, nameOpt.get(), surnameOpt.get(), patronymic, birthDate,
                 homeAddressOpt.get(), phoneNumberOpt.get());
 
         personService.addPerson(newPerson);
-        hirePersons.addHireOperation(new HirePerson(newPerson.id(), positionId, Status.HIRED, Calendar.getInstance()));
-
+        hirePersonService.addHireOperation(new HirePerson(newPerson.id(), positionId, Status.HIRED, Calendar.getInstance()));
+        salaryService.addSalary(new Salary(newPerson.id(), salary));
 
         ui.output("\nEmployee hired\n");
         ui.pressEnterToContinue();

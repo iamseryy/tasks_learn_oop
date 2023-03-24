@@ -22,6 +22,7 @@ public class HirePersonsImpl implements HirePersons {
         }
         return instance;
     }
+
     @Override
     public int add(Object entity) {
         hirePeople.get().add((HirePerson) entity);

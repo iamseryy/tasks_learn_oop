@@ -6,9 +6,11 @@ import model.Status;
 import service.HirePersonService;
 import service.PersonService;
 import service.PositionService;
+import service.SalaryService;
 import service.impl.HirePersonServiceImpl;
 import service.impl.PersonServiceImpl;
 import service.impl.PositionServiceImpl;
+import service.impl.SalaryServiceImpl;
 import view.template.Template;
 import view.ui.UserInterface;
 import view.ui.impl.UserInterfaceImpl;
@@ -20,7 +22,8 @@ import java.util.Optional;
 public class PrintPersonTemplate implements Template {
     private static PersonService personService = new PersonServiceImpl();
     private static PositionService positionService = new PositionServiceImpl();
-    private static HirePersonService hirePersons = new HirePersonServiceImpl();
+    private static HirePersonService hirePersonService = new HirePersonServiceImpl();
+    private static SalaryService salaryService = new SalaryServiceImpl();
     private static UserInterface ui = new UserInterfaceImpl();
 
     @Override
@@ -41,16 +44,17 @@ public class PrintPersonTemplate implements Template {
                 ui.output("Date of Birth: " + df.format(person.dateBirth().getTime()));
                 ui.output("Home address: " + person.homeAddress());
                 ui.output("Phone number: " + person.phoneNumber());
-                String status = hirePersons.findLastHireOperationByPersonId(person.id()).get().getHireType().getDescription();
-                String position = positionService.findPositionById(hirePersons.findLastHireOperationByPersonId(person.id())
+                String status = hirePersonService.findLastHireOperationByPersonId(person.id()).get().getHireType().getDescription();
+                String position = positionService.findPositionById(hirePersonService.findLastHireOperationByPersonId(person.id())
                         .get().getPersonId()).get().position();
                 ui.output("Position: " + position);
                 ui.output("Status: " + status);
-                Calendar calendar = hirePersons.findLastHireOperationByPersonId(person.id()).get().getHireDate();
+                Calendar calendar = hirePersonService.findLastHireOperationByPersonId(person.id()).get().getHireDate();
                 if(status.equals(Status.FIRED.getDescription())){
                     ui.output("Fired date: " + df.format(calendar.getTime()));
                 }else {
                     ui.output("Hired date: " + df.format(calendar.getTime()));
+                    ui.output("Salary: " + salaryService.findSalaryByEmployeeId(person.id()).get().getSalaryValue());
                 }
             }else {
                 ui.output("\nEmployee not found\n");

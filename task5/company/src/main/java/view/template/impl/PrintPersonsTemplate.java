@@ -5,9 +5,11 @@ import model.Status;
 import service.HirePersonService;
 import service.PersonService;
 import service.PositionService;
+import service.SalaryService;
 import service.impl.HirePersonServiceImpl;
 import service.impl.PersonServiceImpl;
 import service.impl.PositionServiceImpl;
+import service.impl.SalaryServiceImpl;
 import view.template.Template;
 import view.ui.UserInterface;
 import view.ui.impl.UserInterfaceImpl;
@@ -22,6 +24,7 @@ public class PrintPersonsTemplate implements Template {
     private static PersonService personService = new PersonServiceImpl();
     private static PositionService positionService = new PositionServiceImpl();
     private static HirePersonService hirePersons = new HirePersonServiceImpl();
+    private static SalaryService salaryService = new SalaryServiceImpl();
     private static UserInterface ui = new UserInterfaceImpl();
 
     @Override
@@ -52,6 +55,7 @@ public class PrintPersonsTemplate implements Template {
                             ui.output("Fired date: " + df.format(calendar.getTime()));
                         }else {
                             ui.output("Hired date: " + df.format(calendar.getTime()));
+                            ui.output("Salary: " + salaryService.findSalaryByEmployeeId(person.id()).get().getSalaryValue());
                         }
                     }));
         }

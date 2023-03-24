@@ -1,5 +1,6 @@
 package view.menu;
 
+import view.template.impl.BackTemplate;
 import view.template.impl.ExitTemplate;
 import view.template.impl.PositionsTemplate;
 import java.util.Arrays;
@@ -10,7 +11,7 @@ public interface CompanyConfigurationMenu {
     List<MenuItem> configurationMenuItems = Arrays.asList(
             new MenuItem[] {
                     new MenuItem("1 Positions", () -> new PositionsTemplate().output()),
-                    new MenuItem("2 Back", () -> new ExitTemplate().output())
+                    new MenuItem("2 Back", () -> new BackTemplate().output())
             }
     );
 }
