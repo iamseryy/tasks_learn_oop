@@ -8,5 +8,7 @@ import java.util.Optional;
 public interface PersonService {
     int addPerson(Person person);
     Optional<Person> findPersonById(int id);
-    Optional<HashSet<Person>> findPeople();
+    HashSet<Person> findPeople();
+    HashSet<Person> findPeopleByName(String name);
+    void removePerson(Person person);
 }

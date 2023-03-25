@@ -1,14 +1,14 @@
 package ru.task6.repository.impl;
 
-import ru.task6.repository.People;
-import ru.task6.model.Person;
-import ru.task6.utils.FileUtils;
 import ru.task6.config.AppConfig;
+import ru.task6.model.Person;
+import ru.task6.repository.People;
+import ru.task6.utils.FileUtils;
 
 import java.util.*;
 
 public class PeopleImpl implements People {
-    private static Optional<HashSet<Person>> people = initCollection();
+    private static HashSet<Person> people = initCollection();
 
     private static PeopleImpl instance;
 
@@ -23,33 +23,35 @@ public class PeopleImpl implements People {
 
     @Override
     public int add(Object entity) {
-        this.people.get().add((Person) entity);
+        this.people.add((Person) entity);
         FileUtils.writeFile("\n" + ((Person) entity).toString(), AppConfig.getProperty("file.people"), true);
         return ((Person) entity).id();
     }
 
     @Override
-    public Optional findById(int id) {
-        return this.people.get().stream().filter(person -> person.id() == id).findAny();
+    public Optional<Person> findById(int id) {
+        return this.people.stream().filter(person -> person.id() == id).findAny();
     }
 
     @Override
-    public void deleteById(int id) {
-
+    public void delete(Object entity) {
+        this.people.remove((Person) entity);
+        var data = new StringBuilder();
+        this.people.stream()
+                .sorted((person1, person2) -> person1.id() - person2.id())
+                .forEach(person -> data.append(person.toString() + "\n"));
+        data.deleteCharAt(data.length()-1);
+        FileUtils.writeFile(data.toString(), AppConfig.getProperty("file.people"), false);
     }
 
     @Override
-    public Optional<HashSet<Person>> findAll() {
+    public HashSet<Person> findAll() {
         return this.people;
     }
 
-    private static Optional<HashSet<Person>> initCollection() {
+    private static HashSet<Person> initCollection() {
         HashSet<Person> people = new HashSet<>();
         ArrayList<String> data = FileUtils.readFile(AppConfig.getProperty("file.people"));
-
-        if (data.isEmpty()){
-            return Optional.empty();
-        }
 
         for (String line: data) {
             String[] values = line.split(";");
@@ -73,6 +75,6 @@ public class PeopleImpl implements People {
             people.add(new Person(id, name, surname, patronymic, date, address));
         }
 
-        return Optional.ofNullable(people);
+        return people;
     }
 }
