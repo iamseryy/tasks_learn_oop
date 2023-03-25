@@ -49,7 +49,7 @@ public class SalariesImpl implements Salaries {
 
     @Override
     public Optional<Salary> findByEmployeeId(int employeeId) {
-        return salaries.get().stream().filter(salary -> salary.getId() == employeeId).findAny();
+        return salaries.get().stream().filter(salary -> salary.getIdEmployee() == employeeId).findAny();
     }
 
     private static Optional<HashSet<Salary>> initCollection() {
