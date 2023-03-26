@@ -7,3 +7,4 @@
 |4|**[Task4](https://github.com/iamseryy/tasks_learn_oop/tree/main/task4)**|Generic Collection|
 |5|**[Task5](https://github.com/iamseryy/tasks_learn_oop/tree/main/task5)**|Company|
 |6|**[Task6](https://github.com/iamseryy/tasks_learn_oop/tree/main/task6)**|Phone book|
+|7|**[Task7](https://github.com/iamseryy/tasks_learn_oop/tree/main/task7)**|Custom Collection ArrayList on Kotlin|
